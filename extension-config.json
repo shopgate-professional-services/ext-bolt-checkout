@@ -1,9 +1,27 @@
 {
   "version": "0.1.0",
   "id": "@shopgate-project/ext-bolt-checkout",
-  "components": [
-    
-  ],
+  "components": [],
   "configuration": {
+    "boltPublishableKey": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": null,
+      "params": {
+        "required": true,
+        "type": "string",
+        "label": "Bolt Publishable Key"
+      }
+    },
+    "cdnUrl": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": null,
+      "params": {
+        "required": true,
+        "type": "string",
+        "label": "Bolt CDN url"
+      }
+    }
   }
 }
