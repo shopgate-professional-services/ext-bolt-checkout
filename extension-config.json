@@ -25,5 +25,25 @@
         "required": true
       }
     }
+    "boltPublishableKey": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": null,
+      "params": {
+        "required": true,
+        "type": "string",
+        "label": "Bolt Publishable Key"
+      }
+    },
+    "cdnUrl": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": null,
+      "params": {
+        "required": true,
+        "type": "string",
+        "label": "Bolt CDN url"
+      }
+    }
   }
 }
