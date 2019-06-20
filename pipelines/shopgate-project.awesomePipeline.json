@@ -1,0 +1,18 @@
+{
+  "version": "1",
+  "pipeline": {
+    "id": "shopgate-project.ext-bolt-checkout.awesomePipeline.v1",
+    "public": true,
+    "input": [],
+    "output": [],
+    "steps": [
+      {
+        "type": "extension",
+        "id": "@shopgate-project/ext-bolt-checkout",
+        "path": "@shopgate-project/ext-bolt-checkout/lib/awesomeStep.js",
+        "input": [],
+        "output": []
+      }
+    ]
+  }
+}
