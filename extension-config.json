@@ -2,8 +2,28 @@
   "version": "0.1.0",
   "id": "@shopgate-project/ext-bolt-checkout",
   "components": [
-    
+
   ],
   "configuration": {
+    "boldApiBaseUrl": {
+      "type": "admin",
+      "destination": "backend",
+      "default": "https://api-sandbox.bolt.com/",
+      "params": {
+        "type": "text",
+        "label": "bolt pay api base url",
+        "required": true
+      }
+    },
+    "boldApiKey": {
+      "type": "admin",
+      "destination": "backend",
+      "default": "bff75639efbf6e38519994d052f5b30f15f603a647123b1d4a40ea5592d61d02",
+      "params": {
+        "type": "text",
+        "label": "bolt pay api key",
+        "required": true
+      }
+    }
   }
 }
