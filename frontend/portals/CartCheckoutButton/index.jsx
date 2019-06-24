@@ -7,7 +7,7 @@ import injectBoltConnect from '../../helpers/injectBoltConnect';
  */
 const CartCheckoutButton = () => {
   const cart = {
-    orderToker: '<token>',
+    orderToken: '<token>',
   };
   const hints = {};
   const callbacks = {
