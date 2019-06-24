@@ -7,10 +7,11 @@ import injectBoltConnect from '../../helpers/injectBoltConnect';
  */
 const CartCheckoutButton = () => {
   useEffect(() => {
-    if (!window.BoltConnect && !window.BoltCheckout) {
-      injectBoltConnect();
+    if (window.BoltConnect && window.BoltCheckout) {
+      return;
     }
-  });
+    injectBoltConnect();
+  }, []);
 
   return (
     <CheckoutButton />
