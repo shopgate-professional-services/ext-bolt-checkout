@@ -2,7 +2,17 @@
   "version": "0.1.0",
   "id": "@shopgate-project/bolt-checkout",
   "components": [
-
+    {
+      "id": "BoltCheckoutButton",
+      "path": "frontend/portals/CartCheckoutButton/index.jsx",
+      "target": "cart.checkout-button",
+      "type": "portals"
+    },
+    {
+      "id": "Subscribers",
+      "type": "subscribers",
+      "path": "frontend/subscriptions"
+    }
   ],
   "configuration": {
     "boldApiBaseUrl": {
@@ -28,7 +38,7 @@
     "boltPublishableKey": {
       "type": "admin",
       "destination": "frontend",
-      "default": null,
+      "default": "_WbB6Np-UkMq.TtSBR6r4dtds.da5c8d172bc679cf431a8e77cb08a01552208329782a36a6b3d90499def02728",
       "params": {
         "required": true,
         "type": "string",
@@ -38,11 +48,21 @@
     "cdnUrl": {
       "type": "admin",
       "destination": "frontend",
-      "default": null,
+      "default": "connect-sandbox.bolt",
       "params": {
         "required": true,
         "type": "string",
         "label": "Bolt CDN url"
+      }
+    },
+    "shoppingCart": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": "Magento",
+      "params": {
+        "required": true,
+        "type": "string",
+        "label": "Merchant's shopping cart provider"
       }
     }
   }
