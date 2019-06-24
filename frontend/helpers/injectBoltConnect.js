@@ -44,7 +44,7 @@ const boltConnectPromise = () => {
 let promise;
 
 /**
- * Get's the Cliplister object.
+ * Get's the BoltConnect and BoltCheckout window object
  *
  * @returns {Promise}
  */
