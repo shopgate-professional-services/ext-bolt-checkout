@@ -7,7 +7,9 @@ import injectBoltConnect from '../../helpers/injectBoltConnect';
  */
 const CartCheckoutButton = () => {
   useEffect(async () => {
+    // If script is already there and ready, it will simply resolve.
     await injectBoltConnect();
+    // Call configure to make the button appear.
     BoltCheckout.configure();
   }, []);
 
@@ -16,4 +18,5 @@ const CartCheckoutButton = () => {
   );
 };
 
+// memo is like componentShouldUpdate. Here we make sure it will render only once.
 export default memo(CartCheckoutButton, () => true);
