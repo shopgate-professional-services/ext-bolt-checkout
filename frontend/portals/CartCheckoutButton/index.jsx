@@ -1,3 +1,4 @@
+/* globals BoltCheckout */
 import React, { useEffect, memo } from 'react';
 import CheckoutButton from '../../components/CheckoutButton';
 import injectBoltConnect from '../../helpers/injectBoltConnect';
@@ -7,11 +8,11 @@ import injectBoltConnect from '../../helpers/injectBoltConnect';
  */
 const CartCheckoutButton = () => {
   const cart = {
-    orderToken: '<token>',
+    orderToken: '223be4ffc4c3337733dadcab14f05dddefb06a037a6ed13e3d8d2902e0a7e1bf',
   };
   const hints = {};
   const callbacks = {
-    succes: (transaction, callback) => {
+    success: (transaction, callback) => {
       callback();
     },
   };
@@ -28,9 +29,7 @@ const CartCheckoutButton = () => {
     BoltCheckout.configure(cart, hints, callbacks);
   }, []);
 
-  return (
-    <CheckoutButton />
-  );
+  return <CheckoutButton />;
 };
 
 // memo is like componentShouldUpdate. Here we make sure it will render only once.
