@@ -6,6 +6,15 @@ import injectBoltConnect from '../../helpers/injectBoltConnect';
  * @returns {JSX}
  */
 const CartCheckoutButton = () => {
+  const cart = {
+    orderToker: '<token>',
+  };
+  const hints = {};
+  const callbacks = {
+    succes: (transaction, callback) => {
+      callback();
+    },
+  };
   useEffect(() => {
     /**
      * async function to inject Bolt script
@@ -15,8 +24,8 @@ const CartCheckoutButton = () => {
     };
     // If script is already there and ready, it will simply resolve.
     injectScript();
-    // Call configure to make the button appear.
-    BoltCheckout.configure();
+    // Call configure to make the button appear. Takes carts, hints, and callbacks
+    BoltCheckout.configure(cart, hints, callbacks);
   }, []);
 
   return (
