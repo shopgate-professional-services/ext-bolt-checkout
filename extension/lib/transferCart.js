@@ -1,4 +1,4 @@
-const BoltApi = require('../lib/BoltApi')
+const BoltApi = require('../utilities/BoltApi')
 /**
  * @param {PipelineContext} context Pipeline context
  * @param {Object} cart Cart object

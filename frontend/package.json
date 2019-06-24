@@ -1,5 +1,5 @@
 {
-  "name": "@shopgate-project/ext-bolt-checkout",
+  "name": "@shopgate-project/bolt-checkout",
   "version": "0.1.0",
   "description": "Extension to enable Bolt Checkout",
   "license": "Apache-2.0",
