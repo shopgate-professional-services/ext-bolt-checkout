@@ -7,7 +7,7 @@ class BoltApi {
    */
   constructor (context) {
     this.host = context.config.boldApiBaseUrl
-    this.request = context.tracedRequest('ShopgateProjectPhiCertificatesAPI')
+    this.request = context.tracedRequest('ShopgateProjectBoltCheckoutAPI')
     this.logger = context.log
     this.token = context.config.boldApiKey
     this.version = 'v1'
