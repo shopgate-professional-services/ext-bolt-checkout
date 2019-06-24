@@ -1,12 +1,16 @@
+import getConfig from './getConfig';
+
+const config = getConfig();
+
 /**
  * Inject bolt-connect script
- * @param {Object} config Contains cdnUrl and boltPublishbleKey
  */
-const injectBoltConnect = (config) => {
+const injectBoltConnect = () => {
   const script = document.createElement('script');
   script.id = 'bolt-connect';
   script.type = 'text/javascript';
-  script.src = `${config.cdnUrl}/track.js`;
+  script.src = `https://${config.cdnUrl}.com/connect.js`;
+  script.setAttribute('data-shopping-cart', config.shoppingCart);
   script.setAttribute('data-publishable-key', config.boltPublishableKey);
   const parent = document.getElementsByTagName('head')[0];
   parent.appendChild(script);
@@ -17,8 +21,8 @@ const injectBoltConnect = (config) => {
  * @param {func} resolve Promise.resolve function
  */
 const tryBoltConnect = (resolve) => {
-  if (window.BoltConnect) {
-    resolve(window.BoltConnect);
+  if (window.BoltConnect && window.BoltCheckout) {
+    resolve(window.BoltConnect && window.BoltCheckout);
     return;
   }
   setTimeout(() => {
