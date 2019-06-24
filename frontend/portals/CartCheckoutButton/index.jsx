@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import CheckoutButton from '../../components/CheckoutButton';
 import injectBoltConnect from '../../helpers/injectBoltConnect';
 
@@ -6,11 +6,9 @@ import injectBoltConnect from '../../helpers/injectBoltConnect';
  * @returns {JSX}
  */
 const CartCheckoutButton = () => {
-  useEffect(() => {
-    if (window.BoltConnect && window.BoltCheckout) {
-      return;
-    }
-    injectBoltConnect();
+  useEffect(async () => {
+    await injectBoltConnect();
+    BoltCheckout.configure();
   }, []);
 
   return (
@@ -18,4 +16,4 @@ const CartCheckoutButton = () => {
   );
 };
 
-export default CartCheckoutButton;
+export default memo(CartCheckoutButton, () => true);
