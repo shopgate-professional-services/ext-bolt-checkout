@@ -11,7 +11,10 @@ import {
  * @returns {Object}
  */
 const boltTokenReducer = (
-  state = {},
+  state = {
+    boltCartToken: null,
+    isFetching: false,
+  },
   action
 ) => {
   switch (action.type) {

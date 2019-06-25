@@ -7,11 +7,12 @@ const { colors } = themeConfig;
  * @returns {JSX}
  */
 const CheckoutButton = () => {
-  const buttonEl = useRef(null);
-  useEffect(() => {
-    buttonEl.current.setAttribute('style', `--bolt-primary-action-color: ${colors.primary}`);
-  }, []);
-  return <div className="bolt-checkout-button large-width" ref={buttonEl} />;
+  return <div
+    className="bolt-checkout-button large-width"
+    style={{
+      '--bolt-primary-action-color': colors.primary
+    }}
+  />;
 };
 
 export default CheckoutButton;

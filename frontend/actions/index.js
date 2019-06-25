@@ -21,7 +21,7 @@ export const fetchBoltCartToken = () => (dispatch, getState) => {
 
   dispatch(requestBoltCartToken());
 
-  new PipelineRequest('shopgate-project.bolt.createCart.v1')
+  new PipelineRequest('shopgate-project.bolt.createCart')
     .dispatch()
     .then((response) => {
       dispatch(receiveBoltCartToken(response));
