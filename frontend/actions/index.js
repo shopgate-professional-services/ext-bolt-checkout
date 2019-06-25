@@ -1,33 +1,33 @@
+import PipelineRequest from '@shopgate/pwa-core/classes/PipelineRequest';
+import { shouldFetchData } from '@shopgate/pwa-common/helpers/redux';
 import { logger } from '@shopgate/pwa-core/helpers';
-import { getDummies } from '../selectors';
+import { getBoltCartToken } from '../selectors';
 import {
-  errorDummies,
-  receiveDummies,
-  requestDummies,
+  errorBoltCartToken,
+  receiveBoltCartToken,
+  requestBoltCartToken,
 } from '../action-creators';
 
 /**
- * Get product swatches action.
- * @param {string} dummyId dummyId
  * @returns {Function}
  */
-export const fetchDummies = dummyId => (dispatch, getState) => {
+export const fetchBoltCartToken = () => (dispatch, getState) => {
   const state = getState();
-  const dummies = getDummies(state, dummyId);
+  const boltCartToken = getBoltCartToken(state);
 
-  if (!shouldFetchData(dummies)) {
+  if (!shouldFetchData(boltCartToken, 'boltCartToken')) {
     return;
   }
 
-  dispatch(requestDummies(dummyId));
+  dispatch(requestBoltCartToken());
 
-  new PipelineRequest('dummy')
+  new PipelineRequest('shopgate-project.bolt.createCart.v1')
     .dispatch()
     .then((response) => {
-      dispatch(receiveDummies(dummyId, response));
+      dispatch(receiveBoltCartToken(response));
     })
     .catch((err) => {
       logger.error(err);
-      dispatch(errorDummies(dummyId));
+      dispatch(errorBoltCartToken());
     });
 };

@@ -1,14 +1,16 @@
 import { appDidStart$ } from '@shopgate/pwa-common/streams/app';
+import { cartReceived$ } from '@shopgate/pwa-common-commerce/cart/streams';
+import { fetchBoltCartToken } from '../actions';
 import injectBoltConnect from '../helpers/injectBoltConnect';
 
 /**
- * Will mount bolt tracking and connect scripts on app start
  * @param {Function} subscribe subscriber function
  */
-const injectBoltConnectSubscription = (subscribe) => {
+export default (subscribe) => {
   subscribe(appDidStart$, () => {
     injectBoltConnect();
   });
+  subscribe(cartReceived$, ({ dispatch }) => {
+    dispatch(fetchBoltCartToken());
+  });
 };
-
-export default injectBoltConnectSubscription;

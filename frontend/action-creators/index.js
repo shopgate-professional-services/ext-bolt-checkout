@@ -1,37 +1,31 @@
 import {
-  RECEIVE_DUMMIES,
-  REQUEST_DUMMIES,
-  ERROR_DUMMIES,
+  RECEIVE_BOLT_CART_TOKEN,
+  REQUEST_BOLT_CART_TOKEN,
+  ERROR_BOLT_CART_TOKEN,
 } from '../constants';
 
 /**
- * RequestDummies action.
- * @param {string} dummyId dummyId.
+ * Request Bolt Cart Token action.
  * @returns {Object}
  */
-export const requestDummies = dummyId => ({
-  type: REQUEST_DUMMIES,
-  dummyId,
+export const requestBoltCartToken = () => ({
+  type: REQUEST_BOLT_CART_TOKEN,
 });
 
 /**
- * ReceiveDummies action.
- * @param {string} dummyId dummyId.
- * @param {Array} dummies dummies.
+ * Receive Bolt Cart Token action.
+ * @param {string} boltCartToken bolt cart token
  * @returns {Object}
  */
-export const receiveDummies = (dummyId, dummies) => ({
-  type: RECEIVE_DUMMIES,
-  dummyId,
-  dummies,
+export const receiveBoltCartToken = boltCartToken => ({
+  type: RECEIVE_BOLT_CART_TOKEN,
+  boltCartToken,
 });
 
 /**
- * ErrorDummies action.
- * @param {string} dummyId dummyId.
+ * Error Bolt Token action.
  * @returns {Object}
  */
-export const errorDummies = dummyId => ({
-  type: ERROR_DUMMIES,
-  dummyId,
+export const errorBoltCartToken = () => ({
+  type: ERROR_BOLT_CART_TOKEN,
 });

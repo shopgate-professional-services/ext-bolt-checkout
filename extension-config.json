@@ -12,6 +12,11 @@
       "id": "Subscribers",
       "type": "subscribers",
       "path": "frontend/subscriptions"
+    },
+    {
+      "id": "boltCartToken",
+      "path": "frontend/reducers/index.js",
+      "type": "reducers"
     }
   ],
   "configuration": {
