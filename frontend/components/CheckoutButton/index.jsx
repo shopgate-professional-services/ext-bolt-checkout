@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { themeConfig } from '@shopgate/pwa-common/helpers/config';
 
 const { colors } = themeConfig;
