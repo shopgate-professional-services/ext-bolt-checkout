@@ -33,6 +33,7 @@ export const fetchBoltCartToken = () => (dispatch, getState) => {
 };
 
 export const flushCart = () => (dispatch, getState) => {
+  // TODO - create new cart in magento, then get new token and getCart
   const cartItems = getCartItems(getState());
   console.warn(cartItems);
 };
