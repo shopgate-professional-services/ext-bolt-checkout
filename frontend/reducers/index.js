@@ -1,51 +1,38 @@
 import {
-  ERROR_DUMMIES,
-  RECEIVE_DUMMIES,
-  REQUEST_DUMMIES,
+  RECEIVE_BOLT_CART_TOKEN,
+  REQUEST_BOLT_CART_TOKEN,
+  ERROR_BOLT_CART_TOKEN,
 } from '../constants';
 
 /**
- * Dummy reducer.
+ * Bolt Cart Token Reducer
  * @param {Object} state State.
  * @param {Object} action Action.
  * @returns {Object}
  */
-const dummyReducer = (
+const boltTokenReducer = (
   state = {},
   action
 ) => {
   switch (action.type) {
-    case REQUEST_DUMMIES:
+    case REQUEST_BOLT_CART_TOKEN:
       return {
         ...state,
-        [action.dummyId]: {
-          ...state[action.dummyId],
-          isFetching: true,
-          expires: 0,
-        },
+        isFetching: true,
       };
-    case RECEIVE_DUMMIES:
+    case RECEIVE_BOLT_CART_TOKEN:
       return {
-        ...state,
-        [action.dummyId]: {
-          ...state[action.dummyId],
-          swatches: action.swatches,
-          isFetching: false,
-          expires: Date.now() + 3600000,
-        },
+        boltCartToken: action.boltCartToken,
+        isFetching: false,
       };
-    case ERROR_DUMMIES:
+    case ERROR_BOLT_CART_TOKEN:
       return {
         ...state,
-        [action.dummyId]: {
-          ...state[action.dummyId],
-          isFetching: false,
-          expires: 0,
-        },
+        isFetching: false,
       };
     default:
       return state;
   }
 };
 
-export default dummyReducer;
+export default boltTokenReducer;

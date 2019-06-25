@@ -1,16 +1,13 @@
 import { createSelector } from 'reselect';
+import { REDUX_NAMESPACE_BOLT_CART_TOKEN } from '../constants';
 
 /**
  * @param {Object} state state
- * @returns {Object}
+ * @return {Object}
  */
-const getDummyState = state => state.dummy;
+export const getBoltCartTokenState = state => state.extensions[REDUX_NAMESPACE_BOLT_CART_TOKEN];
 
-/**
- * Returns dummies
- * @return {Array}
- */
-export const getDummies = createSelector(
-  getDummyState,
-  dummy => dummy
+export const getBoltCartToken = createSelector(
+  getBoltCartTokenState,
+  ({ boltCartToken }) => boltCartToken
 );
