@@ -39,7 +39,7 @@
         "label": "bolt pay api key",
         "required": true
       }
-    }
+    },
     "boltPublishableKey": {
       "type": "admin",
       "destination": "frontend",
