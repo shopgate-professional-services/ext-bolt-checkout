@@ -1,6 +1,6 @@
 import PipelineRequest from '@shopgate/pwa-core/classes/PipelineRequest';
 import { logger } from '@shopgate/pwa-core/helpers';
-import { getCartItems } from '@shopgate/engage/cart';
+import { fetchCart } from '@shopgate/engage/cart';
 import { getBoltCartTokenState } from '../selectors';
 import {
   errorBoltCartToken,
@@ -32,8 +32,16 @@ export const fetchBoltCartToken = () => (dispatch, getState) => {
     });
 };
 
-export const flushCart = () => (dispatch, getState) => {
-  const cartItems = getCartItems(getState());
-  console.warn(cartItems);
+export const flushCart = () => (dispatch) => {
+  new PipelineRequest('shopgate.cart.createNewCartForCustomer')
+    // createNewCartForCustomer don't really use the orderId it only checks for its existence
+    .setInput({ orderId: 'dummy'})
+    .dispatch()
+    .then(() => {
+      dispatch(fetchCart());
+    })
+    .catch((err) => {
+      logger.error(err);
+    });
 };
 

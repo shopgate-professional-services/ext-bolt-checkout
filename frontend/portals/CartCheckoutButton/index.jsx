@@ -23,7 +23,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 /**
  * @returns {JSX}
  */
-const CartCheckoutButton = ({ orderToken, fetchBoltCartToken }) => {
+const CartCheckoutButton = ({ orderToken, fetchBoltCartToken, flushCart:clearCart }) => {
   if (!orderToken) {
     fetchBoltCartToken();
   }
@@ -40,8 +40,10 @@ const CartCheckoutButton = ({ orderToken, fetchBoltCartToken }) => {
         const callbacks = {
           success: (transaction, callback) => {
             console.warn('success!');
-            flushCart();
+            clearCart();
             callback();
+            // TODO: history rest etc
+            // TODO: add tracking here
           },
         };
         // Call configure to make the button appear. Takes carts, hints, and callbacks
