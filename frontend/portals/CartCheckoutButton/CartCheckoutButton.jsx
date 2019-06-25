@@ -7,7 +7,9 @@ import CheckoutButton from '../../components/CheckoutButton';
 /**
  * @returns {JSX}
  */
-const CartCheckoutButton = ({ orderToken, fetchBoltCartToken, flushCart: clearCart }) => {
+const CartCheckoutButton = ({
+  orderToken, prefill, fetchBoltCartToken, flushCart: clearCart,
+}) => {
   if (!orderToken) {
     fetchBoltCartToken();
   }
@@ -20,7 +22,9 @@ const CartCheckoutButton = ({ orderToken, fetchBoltCartToken, flushCart: clearCa
         const cart = {
           orderToken,
         };
-        const hints = {};
+        const hints = {
+          prefill,
+        };
         const callbacks = {
           success: (transaction, callback) => {
             console.warn('success!');
@@ -51,10 +55,12 @@ CartCheckoutButton.propTypes = {
   fetchBoltCartToken: PropTypes.func.isRequired,
   flushCart: PropTypes.func.isRequired,
   orderToken: PropTypes.string,
+  prefill: PropTypes.shape(),
 };
 
 CartCheckoutButton.defaultProps = {
   orderToken: null,
+  prefill: {},
 };
 
 export default CartCheckoutButton;
