@@ -2,7 +2,10 @@
 import React, { useEffect, memo } from 'react';
 import { connect } from 'react-redux';
 import { getBoltCartToken } from '../../selectors';
-import { fetchBoltCartToken } from '../../actions';
+import {
+  fetchBoltCartToken,
+  flushCart
+} from '../../actions';
 import CheckoutButton from '../../components/CheckoutButton';
 import injectBoltConnect from '../../helpers/injectBoltConnect';
 
@@ -12,6 +15,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchBoltCartToken,
+  flushCart,
 };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -36,6 +40,7 @@ const CartCheckoutButton = ({ orderToken, fetchBoltCartToken }) => {
         const callbacks = {
           success: (transaction, callback) => {
             console.warn('success!');
+            flushCart();
             callback();
           },
         };

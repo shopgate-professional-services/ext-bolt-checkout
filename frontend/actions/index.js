@@ -1,5 +1,6 @@
 import PipelineRequest from '@shopgate/pwa-core/classes/PipelineRequest';
 import { logger } from '@shopgate/pwa-core/helpers';
+import { getCartItems } from '@shopgate/engage/cart';
 import { getBoltCartTokenState } from '../selectors';
 import {
   errorBoltCartToken,
@@ -30,3 +31,9 @@ export const fetchBoltCartToken = () => (dispatch, getState) => {
       dispatch(errorBoltCartToken());
     });
 };
+
+export const flushCart = () => (dispatch, getState) => {
+  const cartItems = getCartItems(getState());
+  console.warn(cartItems);
+};
+
