@@ -37,9 +37,6 @@ export const flushCart = () => (dispatch) => {
     // createNewCartForCustomer don't really use the orderId it only checks for its existence
     .setInput({ orderId: 'dummy'})
     .dispatch()
-    .then(() => {
-      dispatch(fetchCart());
-    })
     .catch((err) => {
       logger.error(err);
     });
