@@ -55,5 +55,4 @@ const CartCheckoutButton = ({ orderToken, fetchBoltCartToken }) => {
   return <CheckoutButton />;
 };
 
-// memo is like componentShouldUpdate. Here we make sure it will render only once.
 export default connector(CartCheckoutButton);
