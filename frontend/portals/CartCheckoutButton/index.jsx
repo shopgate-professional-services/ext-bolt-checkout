@@ -17,16 +17,15 @@ const CartCheckoutButton = () => {
     },
   };
   useEffect(() => {
-    /**
-     * async function to inject Bolt script
-     */
-    const injectScript = async () => {
-      await injectBoltConnect;
-    };
     // If script is already there and ready, it will simply resolve.
-    injectScript();
-    // Call configure to make the button appear. Takes carts, hints, and callbacks
-    BoltCheckout.configure(cart, hints, callbacks);
+    injectBoltConnect()
+      .then(() => {
+        // Call configure to make the button appear. Takes carts, hints, and callbacks
+        BoltCheckout.configure(cart, hints, callbacks);
+      })
+      .catch((error) => {
+        // How to handle error here? Retry?
+      });
   }, []);
 
   return <CheckoutButton />;
