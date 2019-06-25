@@ -1,7 +1,6 @@
 import PipelineRequest from '@shopgate/pwa-core/classes/PipelineRequest';
-import { shouldFetchData } from '@shopgate/pwa-common/helpers/redux';
 import { logger } from '@shopgate/pwa-core/helpers';
-import { getBoltCartToken } from '../selectors';
+import { getBoltCartTokenState } from '../selectors';
 import {
   errorBoltCartToken,
   receiveBoltCartToken,
@@ -13,9 +12,9 @@ import {
  */
 export const fetchBoltCartToken = () => (dispatch, getState) => {
   const state = getState();
-  const boltCartToken = getBoltCartToken(state);
+  const boltCartTokenState = getBoltCartTokenState(state);
 
-  if (!shouldFetchData(boltCartToken, 'boltCartToken')) {
+  if (boltCartTokenState.isFetching) {
     return;
   }
 

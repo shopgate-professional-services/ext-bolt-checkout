@@ -9,5 +9,5 @@ export const getBoltCartTokenState = state => state.extensions[REDUX_NAMESPACE_B
 
 export const getBoltCartToken = createSelector(
   getBoltCartTokenState,
-  ({ boltCartToken }) => boltCartToken
+  ({ cartToken }) => cartToken
 );

@@ -12,7 +12,7 @@ import {
  */
 const boltTokenReducer = (
   state = {
-    boltCartToken: null,
+    cartToken: null,
     isFetching: false,
   },
   action
@@ -25,7 +25,7 @@ const boltTokenReducer = (
       };
     case RECEIVE_BOLT_CART_TOKEN:
       return {
-        boltCartToken: action.boltCartToken,
+        ...action.boltCartToken,
         isFetching: false,
       };
     case ERROR_BOLT_CART_TOKEN:
