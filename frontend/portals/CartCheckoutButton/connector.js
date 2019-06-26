@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { getBoltCartToken } from '../../selectors';
-import { fetchBoltCartToken, flushCart } from '../../actions';
+import { fetchBoltCartToken, processOrder } from '../../actions';
 
 // eslint-disable-next-line require-jsdoc
 const mapStateToProps = state => ({
@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchBoltCartToken,
-  flushCart,
+  processOrder,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps);

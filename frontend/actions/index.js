@@ -1,12 +1,14 @@
 import PipelineRequest from '@shopgate/pwa-core/classes/PipelineRequest';
 import { logger } from '@shopgate/pwa-core/helpers';
-import { fetchCart } from '@shopgate/engage/cart';
+import event from '@shopgate/pwa-core/classes/Event';
+import { getCartProducts } from '@shopgate/engage/cart';
 import { getBoltCartTokenState } from '../selectors';
 import {
   errorBoltCartToken,
   receiveBoltCartToken,
   requestBoltCartToken,
 } from '../action-creators';
+import { formatTransaction } from '../helpers/formatTransaction';
 
 /**
  * @returns {Function}
@@ -32,13 +34,25 @@ export const fetchBoltCartToken = () => (dispatch, getState) => {
     });
 };
 
-export const flushCart = () => (dispatch) => {
-  new PipelineRequest('shopgate.cart.createNewCartForCustomer')
-    // createNewCartForCustomer don't really use the orderId it only checks for its existence
-    .setInput({ orderId: 'dummy'})
-    .dispatch()
-    .catch((err) => {
-      logger.error(err);
-    });
+/**
+ * Creates new cart, handles tracking, history reset etc
+ * @param {Object} transaction bolt transaction
+ * @return {Function}
+ */
+export const processOrder = transaction => async (dispatch, getState) => {
+  try {
+    await new PipelineRequest('shopgate.cart.createNewCartForCustomer')
+      // createNewCartForCustomer don't really use the orderId it only checks for its existence
+      .setInput({ orderId: 'dummy' })
+      .dispatch();
+  } catch (err) {
+    logger.error(err);
+  }
+
+  const products = getCartProducts(getState());
+  const order = formatTransaction(transaction, products);
+
+  // checkoutSuccess triggers resetHistory, fetchCart and tracking
+  event.trigger('checkoutSuccess', order);
 };
 

@@ -1,13 +1,12 @@
 /* globals BoltCheckout */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import event from '@shopgate/pwa-core/classes/Event';
 import injectBoltConnect from '../../helpers/injectBoltConnect';
 import CheckoutButton from '../../components/CheckoutButton';
 /**
  * @returns {JSX}
  */
-const CartCheckoutButton = ({ orderToken, fetchBoltCartToken, flushCart: clearCart }) => {
+const CartCheckoutButton = ({ orderToken, fetchBoltCartToken, processOrder }) => {
   if (!orderToken) {
     fetchBoltCartToken();
   }
@@ -23,14 +22,9 @@ const CartCheckoutButton = ({ orderToken, fetchBoltCartToken, flushCart: clearCa
         const hints = {};
         const callbacks = {
           success: (transaction, callback) => {
-            console.warn('success!');
+            console.warn('success!', transaction);
 
-            clearCart();
-            // TODO: track real order
-            // check https://wiki.shopgate.guru/display/DEV/Web+Checkout+and+Web+Register for spec
-            const order = {};
-            // checkoutSuccess triggers resetHistory, fetchCart and tracking
-            event.trigger('checkoutSuccess', order);
+            processOrder();
 
             callback();
           },
@@ -49,7 +43,7 @@ const CartCheckoutButton = ({ orderToken, fetchBoltCartToken, flushCart: clearCa
 
 CartCheckoutButton.propTypes = {
   fetchBoltCartToken: PropTypes.func.isRequired,
-  flushCart: PropTypes.func.isRequired,
+  processOrder: PropTypes.func.isRequired,
   orderToken: PropTypes.string,
 };
 
