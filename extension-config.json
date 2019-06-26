@@ -15,7 +15,7 @@
     },
     {
       "id": "boltCartToken",
-      "path": "frontend/reducers/index.js",
+      "path": "frontend/reducers/boltCartToken.js",
       "type": "reducers"
     }
   ],

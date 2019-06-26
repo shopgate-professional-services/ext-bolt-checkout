@@ -22,9 +22,11 @@ const CartCheckoutButton = ({
         const cart = {
           orderToken,
         };
-        const hints = {
-          prefill,
-        };
+        const hints = {};
+        if (prefill) {
+          hints.prefill = prefill;
+        }
+
         const callbacks = {
           success: (transaction, callback) => {
             console.warn('success!');
@@ -46,7 +48,7 @@ const CartCheckoutButton = ({
       .catch((error) => {
         // How to handle error here? Retry?
       });
-  }, [orderToken]);
+  }, [orderToken, prefill]);
 
   return <CheckoutButton />;
 };
