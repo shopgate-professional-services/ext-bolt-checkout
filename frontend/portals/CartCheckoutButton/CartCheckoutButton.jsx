@@ -8,7 +8,11 @@ import CheckoutButton from '../../components/CheckoutButton';
  * @returns {JSX}
  */
 const CartCheckoutButton = ({
-  orderToken, prefill, fetchBoltCartToken, flushCart: clearCart,
+  orderToken,
+  prefill,
+  fetchBoltCartToken,
+  flushCart: clearCart,
+  isCartBusy,
 }) => {
   if (!orderToken) {
     fetchBoltCartToken();
@@ -50,12 +54,13 @@ const CartCheckoutButton = ({
       });
   }, [orderToken, prefill]);
 
-  return <CheckoutButton />;
+  return <CheckoutButton busy={isCartBusy} />;
 };
 
 CartCheckoutButton.propTypes = {
   fetchBoltCartToken: PropTypes.func.isRequired,
   flushCart: PropTypes.func.isRequired,
+  isCartBusy: PropTypes.bool.isRequired,
   orderToken: PropTypes.string,
   prefill: PropTypes.shape(),
 };
