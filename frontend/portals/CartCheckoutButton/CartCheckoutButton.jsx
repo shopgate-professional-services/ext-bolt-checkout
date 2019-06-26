@@ -34,7 +34,7 @@ const CartCheckoutButton = ({
           success: (transaction, callback) => {
             console.warn('success!', transaction);
 
-            processOrder();
+            processOrder(transaction);
 
             callback();
           },
