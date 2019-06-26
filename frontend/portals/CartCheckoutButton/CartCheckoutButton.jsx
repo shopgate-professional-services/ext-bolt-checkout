@@ -6,7 +6,13 @@ import CheckoutButton from '../../components/CheckoutButton';
 /**
  * @returns {JSX}
  */
-const CartCheckoutButton = ({ orderToken, fetchBoltCartToken, processOrder }) => {
+const CartCheckoutButton = ({
+  orderToken,
+  prefill,
+  fetchBoltCartToken,
+  processOrder,
+  isCartBusy,
+}) => {
   if (!orderToken) {
     fetchBoltCartToken();
   }
@@ -20,6 +26,10 @@ const CartCheckoutButton = ({ orderToken, fetchBoltCartToken, processOrder }) =>
           orderToken,
         };
         const hints = {};
+        if (prefill) {
+          hints.prefill = prefill;
+        }
+
         const callbacks = {
           success: (transaction, callback) => {
             console.warn('success!', transaction);
@@ -36,19 +46,22 @@ const CartCheckoutButton = ({ orderToken, fetchBoltCartToken, processOrder }) =>
       .catch((error) => {
         // How to handle error here? Retry?
       });
-  }, [orderToken]);
+  }, [orderToken, prefill]);
 
-  return <CheckoutButton />;
+  return <CheckoutButton busy={isCartBusy} />;
 };
 
 CartCheckoutButton.propTypes = {
   fetchBoltCartToken: PropTypes.func.isRequired,
   processOrder: PropTypes.func.isRequired,
+  isCartBusy: PropTypes.bool.isRequired,
   orderToken: PropTypes.string,
+  prefill: PropTypes.shape(),
 };
 
 CartCheckoutButton.defaultProps = {
   orderToken: null,
+  prefill: {},
 };
 
 export default CartCheckoutButton;

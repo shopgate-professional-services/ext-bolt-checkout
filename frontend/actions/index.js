@@ -1,4 +1,5 @@
 import PipelineRequest from '@shopgate/pwa-core/classes/PipelineRequest';
+import { ERROR_HANDLE_SUPPRESS } from '@shopgate/pwa-core/constants/ErrorHandleTypes';
 import { logger } from '@shopgate/pwa-core/helpers';
 import event from '@shopgate/pwa-core/classes/Event';
 import { getCartProducts } from '@shopgate/engage/cart';
@@ -24,6 +25,7 @@ export const fetchBoltCartToken = () => (dispatch, getState) => {
   dispatch(requestBoltCartToken());
 
   new PipelineRequest('shopgate-project.bolt.createCart')
+    .setHandleErrors(ERROR_HANDLE_SUPPRESS)
     .dispatch()
     .then((response) => {
       dispatch(receiveBoltCartToken(response));
@@ -55,4 +57,3 @@ export const processOrder = transaction => async (dispatch, getState) => {
   // checkoutSuccess triggers resetHistory, fetchCart and tracking
   event.trigger('checkoutSuccess', order);
 };
-
