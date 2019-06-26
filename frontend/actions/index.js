@@ -3,6 +3,8 @@ import { ERROR_HANDLE_SUPPRESS } from '@shopgate/pwa-core/constants/ErrorHandleT
 import { logger } from '@shopgate/pwa-core/helpers';
 import event from '@shopgate/pwa-core/classes/Event';
 import { getCartProducts } from '@shopgate/engage/cart';
+import getCart from '@shopgate/pwa-tracking/selectors/cart';
+import { track } from '@shopgate/pwa-tracking/helpers';
 import { getBoltCartTokenState } from '../selectors';
 import {
   errorBoltCartToken,
@@ -56,4 +58,12 @@ export const processOrder = transaction => async (dispatch, getState) => {
 
   // checkoutSuccess triggers resetHistory, fetchCart and tracking
   event.trigger('checkoutSuccess', order);
+};
+
+/**
+ * Triggers the initiatedCheckout tracking event
+ * @return {Function}
+ */
+export const initiatedCheckout = () => (dispatch, getState) => {
+  track('initiatedCheckout', { cart: getCart(getState()) }, getState());
 };

@@ -12,6 +12,7 @@ const CartCheckoutButton = ({
   fetchBoltCartToken,
   processOrder,
   isCartBusy,
+  initiatedCheckout,
 }) => {
   if (!orderToken) {
     fetchBoltCartToken();
@@ -31,6 +32,7 @@ const CartCheckoutButton = ({
         }
 
         const callbacks = {
+          onCheckoutStart: initiatedCheckout,
           success: (transaction, callback) => {
             console.warn('success!', transaction);
 
@@ -53,8 +55,9 @@ const CartCheckoutButton = ({
 
 CartCheckoutButton.propTypes = {
   fetchBoltCartToken: PropTypes.func.isRequired,
-  processOrder: PropTypes.func.isRequired,
+  initiatedCheckout: PropTypes.bool.isRequired,
   isCartBusy: PropTypes.bool.isRequired,
+  processOrder: PropTypes.func.isRequired,
   orderToken: PropTypes.string,
   prefill: PropTypes.shape(),
 };
