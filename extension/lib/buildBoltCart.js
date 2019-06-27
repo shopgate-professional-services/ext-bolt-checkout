@@ -26,21 +26,23 @@ module.exports = async function (context, input) {
   })
 
   const tax = input.totals.find(({ type }) => type === 'tax')
+  const discounts = input.totals.filter(({ type }) => type === 'discount')
+
+  const cart = {
+    order_reference: input.cartId,
+    currency: input.currency,
+    total_amount: input.totals.find(({ type }) => type === 'grandTotal').amount * 100,
+    tax_amount: tax ? tax.amount * 100 : undefined,
+    items,
+    discounts: discounts.map((d) => ({
+      amount: Math.abs(d.amount * 100),
+      description: d.label
+    }))
+  }
+
+  context.log.debug(cart, 'Bolt cart')
 
   return {
-    cart: {
-      order_reference: input.cartId,
-      currency: input.currency,
-      total_amount: input.totals.find(({ type }) => type === 'grandTotal').amount * 100,
-      tax_amount: tax ? tax.amount * 100 : undefined,
-      items
-      /*
-      discounts: input.appliedDiscounts.map((discount) => ({
-        amount: 1000, // TODO: how to handle percentage here
-        description: discount.description,
-        reference: discount.code,
-      }))
-      */
-    }
+    cart
   }
 }
