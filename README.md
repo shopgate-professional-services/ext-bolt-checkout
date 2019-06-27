@@ -1,19 +1,34 @@
-# ext-bolt-checkout
-Extension to enable Bolt Checkout
+# Shopgate Engage - Bolt Checkout extension
+Enables Bolt Checkout in Shopgate Engage e-commerce app.
 
 ## Currently supported shopping carts
 - Magento
 
-## Config
+## Installation
+In order to use this extension there are just few things than needs to be done.
 
+### Magento setup
+Bolt Checkout must be installed in Magento instance along with Shopgate plugin.
+
+### Engage app setup
+Bolt Checkout extension needs following extensions in order to provide error free integration:
+- @shopgate/user
+- @shopgate/magento-cart
+- @shopgate-project/bolt-checkout
+
+**Please note that @shopgate/user must be added to the shop config before @shopgate/magento-cart.** It's crucial for the final extensions' pipeline setup/order.
+ 
+### Extensions must be configured properly and shop has to be deployed.
+All extensions (especially @shopgate/magento-cart and @shopgate-project/bolt-checkout) must be properly configured in order to make the communication between Shopgate, Bolt and Magento correct.
+
+For @shopgate/magento-cart configuration please refer to [@shopgate/magento-cart documentation](https://github.com/shopgate/ext-magento-cart).
+
+## Extension Config
 - boldApiBaseUrl - (string) Bolt API url. Prod: https://api.bolt.com/ Dev: https://api-sandbox.bolt.com/
     * (default) "https://api.bolt.com/"
 
 - boldApiKey - (string) Bolt API Key. Can be found in Bolt admin.
-    * (default) "bff75639efbf6e38519994d052f5b30f15f603a647123b1d4a40ea5592d61d02"
-    
 - boltPublishableKey - (string) Bolt Publishable Key. Can be found in Bolt admin.
-    * (default) "_WbB6Np-UkMq.TtSBR6r4dtds.da5c8d172bc679cf431a8e77cb08a01552208329782a36a6b3d90499def02728"
 
 - cdnUrl - (string) Bolt CDN url (where the track.js and connect.js are located). Prod: connect.bolt Dev: connect-sandbox.bolt
     * (default) "connect.bolt"
