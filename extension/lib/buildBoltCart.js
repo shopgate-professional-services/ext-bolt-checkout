@@ -3,9 +3,11 @@
  * @param {Object} input
  * @returns {Promise<Object>}
  */
-module.exports = async function (context, input) {
+module.exports = async function buildBoltCart (context, input) {
   if (!input.cartItems.length) {
-    throw new Error('Your cart is empty')
+    return {
+      cart: null
+    }
   }
 
   const cartItems = input.cartItems.filter(({ type }) => type === 'product')
