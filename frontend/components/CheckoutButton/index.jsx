@@ -16,10 +16,10 @@ const CheckoutButton = ({ busy }) => {
     styles.opacity = '0.5';
     styles.pointerEvents = 'none';
   }
-  return <div
+  return (<div
     className="bolt-checkout-button large-width"
     style={styles}
-  />;
+  />);
 };
 
 CheckoutButton.propTypes = {
