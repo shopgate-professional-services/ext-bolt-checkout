@@ -4,6 +4,8 @@
  * @returns {Promise<Object>}
  */
 module.exports = async function (context, input) {
+  console.warn(JSON.stringify(input))
+
   if (!input.cartItems.length) {
     throw new Error('Your cart is empty')
   }
