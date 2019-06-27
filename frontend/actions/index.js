@@ -2,9 +2,10 @@ import PipelineRequest from '@shopgate/pwa-core/classes/PipelineRequest';
 import { ERROR_HANDLE_SUPPRESS } from '@shopgate/pwa-core/constants/ErrorHandleTypes';
 import { logger } from '@shopgate/pwa-core/helpers';
 import event from '@shopgate/pwa-core/classes/Event';
-import { getCartProducts } from '@shopgate/engage/cart';
+import { getCartProducts, CART_PATH } from '@shopgate/engage/cart';
 import getCart from '@shopgate/pwa-tracking/selectors/cart';
 import { track } from '@shopgate/pwa-tracking/helpers';
+import { LoadingProvider } from '@shopgate/pwa-common/providers';
 import { getBoltCartTokenState } from '../selectors';
 import {
   errorBoltCartToken,
@@ -24,6 +25,8 @@ export const fetchBoltCartToken = () => (dispatch, getState) => {
     return;
   }
 
+  LoadingProvider.setLoading(CART_PATH);
+
   dispatch(requestBoltCartToken());
 
   new PipelineRequest('shopgate-project.bolt.createCart')
@@ -31,10 +34,12 @@ export const fetchBoltCartToken = () => (dispatch, getState) => {
     .dispatch()
     .then((response) => {
       dispatch(receiveBoltCartToken(response));
+      LoadingProvider.unsetLoading(CART_PATH);
     })
     .catch((err) => {
       logger.error(err);
       dispatch(errorBoltCartToken());
+      LoadingProvider.unsetLoading(CART_PATH);
     });
 };
 
