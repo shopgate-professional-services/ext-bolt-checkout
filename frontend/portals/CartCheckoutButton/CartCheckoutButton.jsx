@@ -1,8 +1,12 @@
 /* globals BoltCheckout */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { logger } from '@shopgate/pwa-core';
 import injectBoltConnect from '../../helpers/injectBoltConnect';
 import CheckoutButton from '../../components/CheckoutButton';
+import getConfig from '../../helpers/getConfig';
+
+const { maximumBoltInjectionRetries } = getConfig();
 /**
  * @returns {JSX}
  */
@@ -19,8 +23,25 @@ const CartCheckoutButton = ({
   }
 
   useEffect(() => {
+    /**
+     * Retry promise to handle maximum number of retries and provide error log
+     * @returns {Function}
+     */
+    const retry = () => new Promise((resolve, reject) => {
+      let retries = 0;
+      injectBoltConnect()
+        .then(resolve)
+        .catch(() => {
+          retries += 1;
+          if (retries === maximumBoltInjectionRetries) {
+            reject(new Error('Maximum retry limit reached'));
+            return;
+          }
+          retry().then(resolve);
+        });
+    });
     // If script is already there and ready, it will simply resolve.
-    injectBoltConnect()
+    retry()
       .then(() => {
         const cart = {
           orderToken,
@@ -42,7 +63,7 @@ const CartCheckoutButton = ({
         BoltCheckout.configure(cart, hints, callbacks);
       })
       .catch((error) => {
-        // How to handle error here? Retry?
+        logger.error(error);
       });
   }, [orderToken, prefill]);
 
