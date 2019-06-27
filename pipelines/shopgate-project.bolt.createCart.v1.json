@@ -1,0 +1,154 @@
+{
+  "version": "1",
+  "pipeline": {
+    "id": "shopgate-project.bolt.createCart.v1",
+    "public": true,
+    "input": [
+      {
+        "id": "1000",
+        "key": "sgxsMeta"
+      }
+    ],
+    "output": [
+      {
+        "id": "2010",
+        "key": "cartToken"
+      }
+    ],
+    "steps": [
+      {
+        "id": "shopgate.cart.getCart.v1",
+        "type": "pipeline",
+        "input": [
+          {
+            "id": "1000",
+            "key": "sgxsMeta",
+            "optional": true
+          }
+        ],
+        "output": [
+          {
+            "id": "1010",
+            "key": "isOrderable"
+          },
+          {
+            "id": "1020",
+            "key": "isTaxIncluded"
+          },
+          {
+            "id": "1030",
+            "key": "currency"
+          },
+          {
+            "id": "1040",
+            "key": "messages"
+          },
+          {
+            "id": "1050",
+            "key": "text"
+          },
+          {
+            "id": "1060",
+            "key": "cartItems"
+          },
+          {
+            "id": "1070",
+            "key": "totals"
+          },
+          {
+            "id": "1080",
+            "key": "flags"
+          }
+        ]
+      },
+      {
+        "id": "shopgate-project.bolt.getMagentoCartId.v1",
+        "type": "pipeline",
+        "input": [
+          {"key":  "sgxsMeta", "id":  "1000"}
+        ],
+        "output": [
+          {"key":  "magentoCartId", "id": "2000"}
+        ]
+      },
+      {
+        "id": "@shopgate-project/bolt-checkout",
+        "type": "extension",
+        "path": "@shopgate-project/bolt-checkout/lib/createCartId.js",
+        "input": [
+          {"key":  "magentoCartId", "id":  "2000"}
+        ],
+        "output": [
+          {"key":  "cartId", "id":  "1090"}
+        ]
+      },
+      {
+        "id": "@shopgate-project/bolt-checkout",
+        "path": "@shopgate-project/bolt-checkout/lib/buildBoltCart.js",
+        "type": "extension",
+        "input": [
+          {
+            "id": "1010",
+            "key": "isOrderable"
+          },
+          {
+            "id": "1020",
+            "key": "isTaxIncluded"
+          },
+          {
+            "id": "1030",
+            "key": "currency"
+          },
+          {
+            "id": "1040",
+            "key": "messages"
+          },
+          {
+            "id": "1050",
+            "key": "text"
+          },
+          {
+            "id": "1060",
+            "key": "cartItems"
+          },
+          {
+            "id": "1070",
+            "key": "totals"
+          },
+          {
+            "id": "1080",
+            "key": "flags"
+          },
+          {
+            "id": "1090",
+            "key": "cartId"
+          }
+
+        ],
+        "output": [
+          {
+            "id": "2000",
+            "key": "cart"
+          }
+        ]
+      },
+      {
+        "id": "@shopgate-project/bolt-checkout",
+        "path": "@shopgate-project/bolt-checkout/lib/transferCart.js",
+        "type": "extension",
+        "input": [
+          {
+            "id": "2000",
+            "key": "cart"
+          }
+        ],
+        "output": [
+          {
+            "id": "2010",
+            "key": "cartToken"
+          }
+        ]
+      }
+    ]
+  }
+}
