@@ -22,7 +22,6 @@ const CartCheckoutButton = ({
     // If script is already there and ready, it will simply resolve.
     injectBoltConnect()
       .then(() => {
-        console.warn(orderToken);
         const cart = {
           orderToken,
         };
@@ -34,10 +33,7 @@ const CartCheckoutButton = ({
         const callbacks = {
           onCheckoutStart: initiatedCheckout,
           success: (transaction, callback) => {
-            console.warn('success!', transaction);
-
             processOrder(transaction);
-
             callback();
           },
         };
