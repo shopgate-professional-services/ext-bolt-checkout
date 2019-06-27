@@ -5,7 +5,7 @@
     "public": true,
     "input": [
       {
-        "id": "1010",
+        "id": "1000",
         "key": "sgxsMeta"
       }
     ],
@@ -21,7 +21,7 @@
         "type": "pipeline",
         "input": [
           {
-            "id": "1010",
+            "id": "1000",
             "key": "sgxsMeta",
             "optional": true
           }
@@ -62,15 +62,24 @@
         ]
       },
       {
-        "id": "shopgate.cart.getCartIdInt.v1",
+        "id": "shopgate-project.bolt.getMagentoCartId.v1",
         "type": "pipeline",
         "input": [
+          {"key":  "sgxsMeta", "id":  "1000"}
         ],
         "output": [
-          {
-            "id": "1090",
-            "key": "cartId"
-          }
+          {"key":  "magentoCartId", "id": "2000"}
+        ]
+      },
+      {
+        "id": "@shopgate-project/bolt-checkout",
+        "type": "extension",
+        "path": "@shopgate-project/bolt-checkout/lib/createCartId.js",
+        "input": [
+          {"key":  "magentoCartId", "id":  "2000"}
+        ],
+        "output": [
+          {"key":  "cartId", "id":  "1090"}
         ]
       },
       {
