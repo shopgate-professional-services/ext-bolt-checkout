@@ -23,7 +23,6 @@
     "boldApiBaseUrl": {
       "type": "admin",
       "destination": "backend",
-      "default": "",
       "params": {
         "type": "text",
         "label": "bolt pay api base url",
@@ -33,7 +32,6 @@
     "boldApiKey": {
       "type": "admin",
       "destination": "backend",
-      "default": "",
       "params": {
         "type": "text",
         "label": "bolt pay api key",
@@ -43,7 +41,6 @@
     "boltPublishableKey": {
       "type": "admin",
       "destination": "frontend",
-      "default": "",
       "params": {
         "required": true,
         "type": "string",
