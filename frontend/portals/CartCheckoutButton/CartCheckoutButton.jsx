@@ -1,6 +1,7 @@
 /* globals BoltCheckout */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { logger } from '@shopgate/pwa-core';
 import injectBoltConnect from '../../helpers/injectBoltConnect';
 import CheckoutButton from '../../components/CheckoutButton';
 /**
@@ -42,7 +43,7 @@ const CartCheckoutButton = ({
         BoltCheckout.configure(cart, hints, callbacks);
       })
       .catch((error) => {
-        // How to handle error here? Retry?
+        logger.error(error);
       });
   }, [orderToken, prefill]);
 
