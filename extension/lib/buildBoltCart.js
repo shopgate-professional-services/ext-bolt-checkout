@@ -20,7 +20,6 @@ module.exports = async function (context, input) {
       unit_price: product.price.unit * 100,
       quantity: cartItem.quantity,
       image_url: product.featuredImageUrl ? product.featuredImageUrl : undefined,
-      // TODO: we don't have the key of the prop. we only have the label
       properties: product.properties.map(({ label: key, value }) => ({ key, value }))
     }
   })
