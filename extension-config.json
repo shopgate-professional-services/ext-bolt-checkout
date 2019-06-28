@@ -51,7 +51,7 @@
     "cdnUrl": {
       "type": "admin",
       "destination": "frontend",
-      "default": "connect-sandbox.bolt",
+      "default": "connect.bolt",
       "params": {
         "required": true,
         "type": "string",
