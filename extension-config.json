@@ -23,6 +23,7 @@
     "boldApiBaseUrl": {
       "type": "admin",
       "destination": "backend",
+      "default": "https://api.bolt.com/",
       "params": {
         "type": "text",
         "label": "bolt pay api base url",
