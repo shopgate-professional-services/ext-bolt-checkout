@@ -69,16 +69,6 @@
         "type": "string",
         "label": "Merchant's shopping cart provider"
       }
-    },
-    "maximumBoltInjectionRetries": {
-      "type": "admin",
-      "destination": "frontend",
-      "default": "3",
-      "params": {
-        "required": true,
-        "type": "number",
-        "label": "Maximum number of retries for Bolt Script Injections"
-      }
     }
   }
 }
