@@ -23,7 +23,6 @@
     "boldApiBaseUrl": {
       "type": "admin",
       "destination": "backend",
-      "default": "https://api-sandbox.bolt.com/",
       "params": {
         "type": "text",
         "label": "bolt pay api base url",
@@ -33,7 +32,6 @@
     "boldApiKey": {
       "type": "admin",
       "destination": "backend",
-      "default": "bff75639efbf6e38519994d052f5b30f15f603a647123b1d4a40ea5592d61d02",
       "params": {
         "type": "text",
         "label": "bolt pay api key",
@@ -43,7 +41,6 @@
     "boltPublishableKey": {
       "type": "admin",
       "destination": "frontend",
-      "default": "_WbB6Np-UkMq.TtSBR6r4dtds.da5c8d172bc679cf431a8e77cb08a01552208329782a36a6b3d90499def02728",
       "params": {
         "required": true,
         "type": "string",
