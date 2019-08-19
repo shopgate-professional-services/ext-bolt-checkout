@@ -1,0 +1,27 @@
+{
+  "version": "1",
+  "pipeline": {
+    "id": "shopgate-project.bolt.clearCart.v1",
+    "public": true,
+    "input": [
+      {
+        "id": "100",
+        "key": "sgxsMeta"
+      }
+    ],
+    "output": [],
+    "steps": [
+      {
+        "id": "shopgate-project.bolt.clearLegacyCart.v1",
+        "type": "pipeline",
+        "input": [
+          {
+            "id": "100",
+            "key": "sgxsMeta"
+          }
+        ],
+        "output": []
+      }
+    ]
+  }
+}

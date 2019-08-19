@@ -1,0 +1,63 @@
+{
+  "version": "1",
+  "pipeline": {
+    "id": "shopgate-project.bolt.getMagentoTwoCartId.v1",
+    "public": true,
+    "input": [
+      {"key": "sgxsMeta", "id": "1000"},
+      {"key":  "cartItems", "id":  "1060"},
+      {"key":  "currency", "id":  "1030"}
+    ],
+    "output": [
+      {"id": "2010", "key": "magentoCartId"}
+    ],
+    "steps": [
+      {
+        "id": "@shopgate-project/bolt-checkout",
+        "path": "@shopgate-project/bolt-checkout/lib/getInternalCustomerId.js",
+        "type": "extension",
+        "input": [],
+        "output": [
+          {"key": "internalCustomerId", "id": "1050"}
+        ]
+      },
+      {
+        "type": "conditional",
+        "input": [
+          {"key": "internalCustomerId", "id": "1050"}
+        ],
+        "expression": {
+          "ok": [
+            {
+              "name": "internalCustomerId"
+            }
+          ]
+        },
+        "then": {
+          "type": "pipeline",
+          "id": "shopgate.user.getUserShopAccount.v1",
+          "trusted": "true",
+          "input": [
+            {"key": "sgxsMeta", "id": "1000"}
+          ],
+          "output": [
+            {"key": "externalCustomerId", "id": "2000"}
+          ]
+        }
+      },
+      {
+        "type": "extension",
+        "id": "@shopgate-project/bolt-checkout",
+        "path": "@shopgate-project/bolt-checkout/lib/fetchMagentoTwoCartId.js",
+        "input": [
+          {"key": "externalCustomerId", "id": "2000", "optional": true},
+          {"key":  "cartItems", "id":  "1060"},
+          {"key":  "currency", "id":  "1030"}
+        ],
+        "output": [
+          {"id": "2010", "key": "magentoCartId"}
+        ]
+      }
+    ]
+  }
+}

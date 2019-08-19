@@ -67,6 +67,42 @@
         "type": "string",
         "label": "Merchant's shopping cart provider"
       }
+    },
+    "shopgateCustomerNumber": {
+      "type": "admin",
+      "destination": "backend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Shopgate Customer Number"
+      }
+    },
+    "shopgateShopNumber": {
+      "type": "admin",
+      "destination": "backend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Shopgate Shop Number"
+      }
+    },
+    "shopgateApiKey": {
+      "type": "admin",
+      "destination": "backend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Shopgate Api Key"
+      }
+    },
+    "shopgatePluginUrl": {
+      "type": "admin",
+      "destination": "backend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Shopgate Plugin Url"
+      }
     }
   }
 }

@@ -1,0 +1,56 @@
+{
+  "version": "1",
+  "pipeline": {
+    "id": "shopgate-project.bolt.getFullCartProducts.v1",
+    "public": true,
+    "input": [
+      {"key":  "cartItems", "id":  "1000"},
+      {
+        "id": "100",
+        "key": "sgxsMeta"
+      }
+    ],
+    "output": [
+      {
+        "id": "2000",
+        "key": "products"
+      }
+    ],
+    "steps": [
+      {
+        "type": "extension",
+        "id": "@shopgate-project/bolt-checkout",
+        "path": "@shopgate-project/bolt-checkout/lib/listCartItemProductIds.js",
+        "input": [
+          {"key":  "cartItems", "id":  "1000"}
+        ],
+        "output": [
+          {
+            "id": "1010",
+            "key": "productIds"
+          }
+        ]
+      },
+      {
+        "id": "shopgate.catalog.getProductsByIds.v1",
+        "type": "pipeline",
+        "input": [
+          {
+            "id": "1010",
+            "key": "productIds"
+          },
+          {
+            "id": "100",
+            "key": "sgxsMeta"
+          }
+        ],
+        "output": [
+          {
+            "id": "2000",
+            "key": "products"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -50,16 +50,13 @@ export const fetchBoltCartToken = () => (dispatch, getState) => {
  */
 export const processOrder = transaction => async (dispatch, getState) => {
   try {
-    await new PipelineRequest('shopgate.cart.createNewCartForCustomer')
-      // createNewCartForCustomer don't really use the orderId it only checks for its existence
-      .setInput({ orderId: 'dummy' })
-      .dispatch();
+    await new PipelineRequest('shopgate-project.bolt.clearCart').dispatch();
   } catch (err) {
     logger.error(err);
   }
 
   const products = getCartProducts(getState());
-  const order = formatTransaction(transaction, products);
+  const order = formatTransaction(transaction, products)
 
   // checkoutSuccess triggers resetHistory, fetchCart and tracking
   event.trigger('checkoutSuccess', order);

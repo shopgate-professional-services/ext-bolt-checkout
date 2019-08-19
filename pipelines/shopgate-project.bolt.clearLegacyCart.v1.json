@@ -1,0 +1,65 @@
+{
+  "version": "1",
+  "pipeline": {
+    "id": "shopgate-project.bolt.clearLegacyCart.v1",
+    "public": true,
+    "input": [
+      {
+        "id": "100",
+        "key": "sgxsMeta"
+      }
+    ],
+    "output": [],
+    "steps": [
+      {
+        "id": "shopgate.cart.getCart.v1",
+        "type": "pipeline",
+        "input": [
+          {
+            "id": "100",
+            "key": "sgxsMeta",
+            "optional": true
+          }
+        ],
+        "output": [
+          {
+            "id": "200",
+            "key": "cartItems"
+          }
+        ]
+      },
+      {
+        "type": "extension",
+        "id": "@shopgate-project/bolt-checkout",
+        "path": "@shopgate-project/bolt-checkout/lib/listCartItemIds.js",
+        "input": [
+          {
+            "key":  "cartItems",
+            "id":  "200"
+          }
+        ],
+        "output": [
+          {
+            "id": "210",
+            "key": "cartItemIds"
+          }
+        ]
+      },
+      {
+        "id": "shopgate.cart.deleteProducts.v1",
+        "type": "pipeline",
+        "input": [
+          {
+            "id": "100",
+            "key": "sgxsMeta"
+          },
+          {
+            "id": "210",
+            "key": "cartItemIds"
+          }
+        ],
+        "output": []
+      }
+    ]
+  }
+}
