@@ -11,6 +11,10 @@ class PluginApi {
     this.hash = crypto.createHash('sha1')
   }
 
+  haveInformationForRequest () {
+    return this.host && this.shopNumber && this.apiKey && this.customerNumber
+  }
+
   makeAuthTokens () {
     const timeStamp = Math.floor(Date.now() / 1000)
     const authUser = `${this.customerNumber}-${timeStamp}`
@@ -60,6 +64,9 @@ class PluginApi {
   }
 
   async call (form) {
+    if (!this.haveInformationForRequest()) {
+      throw new Error('Cannot make plugin api call because config is missing connection information')
+    }
     return new Promise((resolve, reject) => {
       const { authUser, token } = this.makeAuthTokens()
       const params = {

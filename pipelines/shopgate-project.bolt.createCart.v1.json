@@ -81,6 +81,7 @@
         "input": [
           {"key": "sgxsMeta", "id": "1000"},
           {"key":  "cartItems", "id":  "1060"},
+          {"key":  "fullProducts", "id": "2010"},
           {"key":  "currency", "id":  "1030"}
         ],
         "output": [

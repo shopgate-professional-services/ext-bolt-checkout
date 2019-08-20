@@ -3,14 +3,15 @@ const createCheckCartItems = require('../helpers/createCheckCartItems')
 const createCheckCartCoupons = require('../helpers/createCheckCartCoupons')
 
 module.exports = async (context, input) => {
-  const { cartItems = [], currency, externalCustomerId } = input || {}
+  const { cartItems = [], fullProducts = [], currency, externalCustomerId } = input || {}
+
   if (cartItems.length < 1) {
     return { magentoCartId: null }
   }
 
   const cart = {
     internal_cart_info: JSON.stringify({ bolt_request: true }),
-    items: createCheckCartItems(currency, cartItems),
+    items: createCheckCartItems(currency, cartItems, fullProducts),
     currency,
     client: {
       type: 'mobilesite'

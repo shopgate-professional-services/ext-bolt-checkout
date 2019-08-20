@@ -6,6 +6,7 @@
     "input": [
       {"key": "sgxsMeta", "id": "1000"},
       {"key":  "cartItems", "id":  "1060"},
+      {"key":  "fullProducts", "id":  "1070"},
       {"key":  "currency", "id":  "1030"}
     ],
     "output": [
@@ -52,6 +53,7 @@
         "input": [
           {"key": "externalCustomerId", "id": "2000", "optional": true},
           {"key":  "cartItems", "id":  "1060"},
+          {"key":  "fullProducts", "id":  "1070"},
           {"key":  "currency", "id":  "1030"}
         ],
         "output": [

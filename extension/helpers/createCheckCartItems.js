@@ -1,23 +1,17 @@
-const getInternalOrderInfo = (item) => {
-  const internalOrderInfo = {
-    store_view_id: 1,
-    product_id: item.product.id,
-    item_type: 'simple'
-  }
-  return JSON.stringify(internalOrderInfo)
-}
-
-module.exports = (currency, cartItems = []) => {
+module.exports = (currency, cartItems = [], fullProducts = []) => {
   return cartItems
     .filter(({type, product}) => (type === 'product' && !!product))
     .map(item => {
+      const fullProduct = fullProducts
+        .find(fullProduct => fullProduct.id === item.product.id)
+      const { customData = '{}' } = fullProduct || {}
       return {
         item_number: item.product.id,
         quantity: item.quantity,
         unit_amount: item.product.price.unit,
         name: item.product.name,
         currency,
-        internal_order_info: getInternalOrderInfo(item)
+        internal_order_info: customData
       }
     })
 }
