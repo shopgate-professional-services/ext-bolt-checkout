@@ -1,3 +1,3 @@
-module.exports = async (context, { cartItems = [] }) => {
-  return { cartItemIds: cartItems.map(cartItem => cartItem.id) }
-}
+module.exports = async (context, { cartItems = [] }) => ({
+  cartItemIds: cartItems.map(cartItem => cartItem.id)
+})

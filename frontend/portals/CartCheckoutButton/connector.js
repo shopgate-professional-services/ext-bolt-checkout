@@ -9,10 +9,15 @@ const mapStateToProps = state => ({
   isCartBusy: getIsCartBusy(state),
 });
 
-const mapDispatchToProps = {
+/**
+ * Maps action dispatchers to the component props.
+ * @param {Function} dispatch The store dispatcher.
+ * @return {Object} The extended component props.
+ */
+const mapDispatchToProps = dispatch => ({
   fetchBoltCartToken,
-  processOrder,
-  initiatedCheckout,
-};
+  processOrder: transaction => dispatch(processOrder(transaction)),
+  initiatedCheckout: () => dispatch(initiatedCheckout()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps);
