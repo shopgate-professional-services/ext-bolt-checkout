@@ -25,6 +25,7 @@ For @shopgate/magento-cart configuration please refer to [@shopgate/magento-cart
     * (default) "https://api.bolt.com/"
 
 - boldApiKey - (string) Bolt API Key. Can be found in Bolt admin.
+
 - boltPublishableKey - (string) Bolt Publishable Key. Can be found in Bolt admin.
 
 - cdnUrl - (string) Bolt CDN url (where the track.js and connect.js are located). Prod: connect.bolt Dev: connect-sandbox.bolt
@@ -38,3 +39,5 @@ For @shopgate/magento-cart configuration please refer to [@shopgate/magento-cart
 - shopgateShopNumber - (string) Merchant's Shopgate shop number
 
 - shopgateApiKey - (string) Merchant's Shopgate API key
+
+- shopgatePluginUrl - (string) Url to Shopgate plugin endpoint on the merchant's magento2 server
