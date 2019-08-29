@@ -9,6 +9,12 @@
       "type": "portals"
     },
     {
+      "type": "portals",
+      "target": "app.globals",
+      "path": "frontend/portals/GlobalCssRules",
+      "id": "GlobalCssRules"
+    },
+    {
       "id": "Subscribers",
       "type": "subscribers",
       "path": "frontend/subscriptions"
