@@ -56,7 +56,7 @@ export const processOrder = transaction => async (dispatch, getState) => {
   }
 
   const products = getCartProducts(getState());
-  const order = formatTransaction(transaction, products)
+  const order = formatTransaction(transaction, products);
 
   // checkoutSuccess triggers resetHistory, fetchCart and tracking
   event.trigger('checkoutSuccess', order);

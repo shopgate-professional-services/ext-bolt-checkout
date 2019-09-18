@@ -9,6 +9,7 @@ class PluginApi {
     this.shopNumber = context.config.shopgateShopNumber
     this.apiKey = context.config.shopgateApiKey
     this.hash = crypto.createHash('sha1')
+    this.deviceId = context.meta.deviceId
   }
 
   haveInformationForRequest () {
@@ -24,6 +25,10 @@ class PluginApi {
     return { authUser, token }
   }
 
+  generateTraceId () {
+    return `sm-${this.deviceId}_${Date.now()}`
+  }
+
   /**
    * Sanitizes params for use in logging
    * @param {*} params Params to be logged
@@ -31,7 +36,7 @@ class PluginApi {
    */
   sanitizeForLogging (params) {
     let sanitizedForLoggingBody = params
-    if (typeof params === 'object') {
+    if (params && typeof params === 'object') {
       sanitizedForLoggingBody = { ...params }
       for (let key in sanitizedForLoggingBody) {
         if (typeof sanitizedForLoggingBody[key] === 'string') {
@@ -109,7 +114,7 @@ class PluginApi {
     const form = {
       action: 'ping',
       shop_number: this.shopNumber,
-      trace_id: 'sma-9412'
+      trace_id: this.generateTraceId()
     }
     return this.call(form)
   }
@@ -118,7 +123,7 @@ class PluginApi {
     const form = {
       action: 'check_cart',
       shop_number: this.shopNumber,
-      trace_id: 'sma-2149',
+      trace_id: this.generateTraceId(),
       cart
     }
     return this.call(form)
