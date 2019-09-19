@@ -16,8 +16,8 @@ export const getBoltCartToken = createSelector(
 
 const getUserAddressBook = (state) => {
   const collection = state.extensions['@shopgate/user/UserReducers'];
-
-  return collection.addressBook || null;
+  const { addressBook } = collection || {};
+  return addressBook || null;
 };
 
 const getUserDefaultAddress = createSelector(

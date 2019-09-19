@@ -52,7 +52,7 @@ const CartCheckoutButton = ({
 
 CartCheckoutButton.propTypes = {
   fetchBoltCartToken: PropTypes.func.isRequired,
-  initiatedCheckout: PropTypes.bool.isRequired,
+  initiatedCheckout: PropTypes.func.isRequired,
   isCartBusy: PropTypes.bool.isRequired,
   processOrder: PropTypes.func.isRequired,
   orderToken: PropTypes.string,

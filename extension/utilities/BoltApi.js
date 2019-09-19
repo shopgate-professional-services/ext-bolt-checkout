@@ -29,7 +29,7 @@ class BoltApi {
    */
   sanitizeForLogging (params) {
     let sanitizedForLoggingBody = params
-    if (typeof params === 'object') {
+    if (params && typeof params === 'object') {
       sanitizedForLoggingBody = { ...params }
       for (let key in sanitizedForLoggingBody) {
         if (typeof sanitizedForLoggingBody[key] === 'string') {

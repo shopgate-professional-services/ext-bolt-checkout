@@ -62,10 +62,27 @@
         ]
       },
       {
-        "id": "shopgate-project.bolt.getMagentoCartId.v1",
+        "id": "shopgate-project.bolt.getFullCartProducts.v1",
         "type": "pipeline",
         "input": [
-          {"key":  "sgxsMeta", "id":  "1000"}
+          {"key":  "cartItems", "id":  "1060"},
+          {
+            "id": "1000",
+            "key": "sgxsMeta"
+          }
+        ],
+        "output": [
+          {"key":  "products", "id": "2010"}
+        ]
+      },
+      {
+        "id": "shopgate-project.bolt.getMagentoTwoCartId.v1",
+        "type": "pipeline",
+        "input": [
+          {"key": "sgxsMeta", "id": "1000"},
+          {"key":  "cartItems", "id":  "1060"},
+          {"key":  "fullProducts", "id": "2010"},
+          {"key":  "currency", "id":  "1030"}
         ],
         "output": [
           {"key":  "magentoCartId", "id": "2000"}
@@ -122,8 +139,11 @@
           {
             "id": "1090",
             "key": "cartId"
+          },
+          {
+            "key": "products",
+            "id": "2010"
           }
-
         ],
         "output": [
           {

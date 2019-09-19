@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-rc.1",
+  "version": "1.1.0-rc.3",
   "id": "@shopgate-project/bolt-checkout",
   "components": [
     {
@@ -7,6 +7,12 @@
       "path": "frontend/portals/CartCheckoutButton/index.jsx",
       "target": "cart.checkout-button",
       "type": "portals"
+    },
+    {
+      "type": "portals",
+      "target": "app.globals",
+      "path": "frontend/portals/GlobalCssRules",
+      "id": "GlobalCssRules"
     },
     {
       "id": "Subscribers",
@@ -61,11 +67,47 @@
     "shoppingCart": {
       "type": "admin",
       "destination": "frontend",
-      "default": "Magento",
+      "default": "Magento2",
       "params": {
         "required": true,
         "type": "string",
         "label": "Merchant's shopping cart provider"
+      }
+    },
+    "shopgateCustomerNumber": {
+      "type": "admin",
+      "destination": "backend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Shopgate Customer Number"
+      }
+    },
+    "shopgateShopNumber": {
+      "type": "admin",
+      "destination": "backend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Shopgate Shop Number"
+      }
+    },
+    "shopgateApiKey": {
+      "type": "admin",
+      "destination": "backend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Shopgate Api Key"
+      }
+    },
+    "shopgatePluginUrl": {
+      "type": "admin",
+      "destination": "backend",
+      "default": "",
+      "params": {
+        "type": "text",
+        "label": "Shopgate Plugin Url"
       }
     }
   }
