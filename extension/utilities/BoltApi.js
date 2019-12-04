@@ -19,7 +19,9 @@ class BoltApi {
    * @return {string}
    */
   makeUrl (pathname) {
-    return `${this.host}${this.version}${pathname}`
+    let host = this.host || ''
+    host = host.trim().replace(/\/$/, '')
+    return `${host}/${this.version}${pathname}`
   }
 
   /**
@@ -77,7 +79,6 @@ class BoltApi {
         json: true,
         timeout: 5000,
         headers: {
-          'Content-Length': JSON.stringify(body).length,
           'X-Api-Key': this.token,
           'X-Nonce': crypto.randomBytes(7).toString('hex')
         }
@@ -87,7 +88,7 @@ class BoltApi {
         if (err) {
           this.logger.error({
             body,
-            httpCode: res.statusCode
+            error: {...err}
           }, 'BoltAPI request error')
           return reject(err)
         }
