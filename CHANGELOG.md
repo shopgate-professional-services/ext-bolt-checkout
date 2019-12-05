@@ -10,6 +10,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Fixed
 ### Removed
 
+## [1.1.1] - 2019-12-05
+### Fixed
+- error handling when api request fails to send request
+- handling of api host url from config
+- removed content-length header deferring to the one automatically added by request
+
 ## [1.0.0] - YYYY-MM-DD
 ### Added
 ### Changed
@@ -17,5 +23,6 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Removed
 
 
-[Unreleased]: https://github.com/shopgate/ext-cliplister/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/shopgate/ext-cliplister/compare/v0.0.1...v1.0.0
+[Unreleased]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.0...v1.1.1
+[1.0.0]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v0.0.1...v1.0.0
