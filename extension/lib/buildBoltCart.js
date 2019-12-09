@@ -1,4 +1,16 @@
 /**
+ * Get value of total from cart total in cents
+ * @param {string} totalName Name of total line to be accessed
+ * @param {[Object]} totals Array of Total objects
+ * @return {number}
+ */
+const getTotal = (totalName, totals = []) => {
+  const { amount = 0 } = totals.find(({ type }) => type === totalName) || {}
+  // return in cents
+  return amount * 100
+}
+
+/**
  * @param {PipelineContext} context
  * @param {Object} input
  * @returns {Promise<Object>}
@@ -29,13 +41,13 @@ module.exports = async function buildBoltCart (context, input) {
     }
   })
 
-  const tax = input.totals.find(({ type }) => type === 'tax')
+  const tax = getTotal('tax', input.totals)
   const discounts = input.totals.filter(({ type }) => type === 'discount')
   const cart = {
     order_reference: input.cartId,
     currency: input.currency,
-    total_amount: input.totals.find(({ type }) => type === 'grandTotal').amount * 100,
-    tax_amount: tax ? tax.amount * 100 : undefined,
+    total_amount: getTotal('subTotal', input.totals) + tax,
+    tax,
     items,
     discounts: discounts.map((d) => ({
       amount: Math.abs(d.amount * 100),
