@@ -47,7 +47,7 @@ module.exports = async function buildBoltCart (context, input) {
     order_reference: input.cartId,
     currency: input.currency,
     total_amount: getTotal('subTotal', input.totals) + tax,
-    tax,
+    tax_amount: tax,
     items,
     discounts: discounts.map((d) => ({
       amount: Math.abs(d.amount * 100),
