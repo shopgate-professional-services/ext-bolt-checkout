@@ -5,10 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-### Added
-### Changed
+
+## [1.1.2] - 2019-12-11
 ### Fixed
-### Removed
+- Cart total calculation for bolt checkout request
 
 ## [1.1.1] - 2019-12-05
 ### Fixed
@@ -23,6 +23,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Removed
 
 
-[Unreleased]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.2...HEAD
+[1.1.2]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.0...v1.1.1
 [1.0.0]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v0.0.1...v1.0.0
