@@ -5,4 +5,8 @@ css.global('#bolt-tracking-frame', {
   display: 'none',
 });
 
+css.global('#bolt-modal-background', {
+  top: 'env(safe-area-inset-top)',
+});
+
 export default () => null;
