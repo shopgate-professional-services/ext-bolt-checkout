@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 ### Fixed
-- Styling on Bolt checkout modal
+- Styling on Bolt checkout modal on iPhones >= 10
 
 ## [1.1.2] - 2019-12-11
 ### Fixed
