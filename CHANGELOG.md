@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.1.3] - 2020-01-22
 ### Fixed
 - missing display id in request to get bolt checkout token
 - removed vestigial files
@@ -26,7 +28,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Removed
 
 
-[Unreleased]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.2...HEAD
+[Unreleased]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.3...HEAD
+[1.1.3]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.2...v1.1.3
 [1.1.2]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.0...v1.1.1
 [1.0.0]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v0.0.1...v1.0.0
