@@ -6,7 +6,10 @@ module.exports = async (context, input) => {
   const { cartItems = [], fullProducts = [], currency, externalCustomerId } = input || {}
 
   if (cartItems.length < 1) {
-    return { magentoCartId: null }
+    return {
+      orderReference: null,
+      displayId: null
+    }
   }
 
   const cart = {
@@ -38,5 +41,8 @@ module.exports = async (context, input) => {
   const { internal_cart_info: internalCartInfo } = response || {}
   const { quote_id: quoteId, reserved_order_id: reservedOrderId } = JSON.parse(internalCartInfo) || {}
 
-  return { magentoCartId: `${reservedOrderId} / ${quoteId}` }
+  return {
+    orderReference: quoteId,
+    displayId: `${reservedOrderId} / ${quoteId}`
+  }
 }

@@ -44,7 +44,7 @@ module.exports = async function buildBoltCart (context, input) {
   const tax = getTotal('tax', input.totals)
   const discounts = input.totals.filter(({ type }) => type === 'discount')
   const cart = {
-    order_reference: input.cartId,
+    order_reference: input.orderReference,
     currency: input.currency,
     total_amount: getTotal('subTotal', input.totals) + tax,
     tax_amount: tax,
@@ -54,6 +54,11 @@ module.exports = async function buildBoltCart (context, input) {
       description: d.label
     }))
   }
+
+  if (input.displayId) {
+    cart.display_id = input.displayId
+  }
+
   context.log.debug(cart, 'Bolt cart')
 
   return {

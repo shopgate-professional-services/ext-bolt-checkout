@@ -1,7 +1,7 @@
 {
   "version": "1",
   "pipeline": {
-    "id": "shopgate-project.bolt.getMagentoTwoCartId.v1",
+    "id": "shopgate-project.bolt.getMagentoTwoCartIds.v1",
     "public": true,
     "input": [
       {"key": "sgxsMeta", "id": "1000"},
@@ -10,7 +10,8 @@
       {"key":  "currency", "id":  "1030"}
     ],
     "output": [
-      {"id": "2010", "key": "magentoCartId"}
+      {"id": "2010", "key": "orderReference"},
+      {"id": "2020", "key": "displayId"}
     ],
     "steps": [
       {
@@ -49,7 +50,7 @@
       {
         "type": "extension",
         "id": "@shopgate-project/bolt-checkout",
-        "path": "@shopgate-project/bolt-checkout/lib/fetchMagentoTwoCartId.js",
+        "path": "@shopgate-project/bolt-checkout/lib/fetchMagentoTwoCartIds.js",
         "input": [
           {"key": "externalCustomerId", "id": "2000", "optional": true},
           {"key":  "cartItems", "id":  "1060"},
@@ -57,7 +58,8 @@
           {"key":  "currency", "id":  "1030"}
         ],
         "output": [
-          {"id": "2010", "key": "magentoCartId"}
+          {"id": "2010", "key": "orderReference"},
+          {"id": "2020", "key": "displayId"}
         ]
       }
     ]

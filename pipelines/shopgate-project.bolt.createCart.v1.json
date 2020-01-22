@@ -76,7 +76,7 @@
         ]
       },
       {
-        "id": "shopgate-project.bolt.getMagentoTwoCartId.v1",
+        "id": "shopgate-project.bolt.getMagentoTwoCartIds.v1",
         "type": "pipeline",
         "input": [
           {"key": "sgxsMeta", "id": "1000"},
@@ -85,18 +85,8 @@
           {"key":  "currency", "id":  "1030"}
         ],
         "output": [
-          {"key":  "magentoCartId", "id": "2000"}
-        ]
-      },
-      {
-        "id": "@shopgate-project/bolt-checkout",
-        "type": "extension",
-        "path": "@shopgate-project/bolt-checkout/lib/createCartId.js",
-        "input": [
-          {"key":  "magentoCartId", "id":  "2000"}
-        ],
-        "output": [
-          {"key":  "cartId", "id":  "1090"}
+          {"key":  "orderReference", "id": "1090"},
+          {"key":  "displayId", "id": "2000"}
         ]
       },
       {
@@ -138,7 +128,12 @@
           },
           {
             "id": "1090",
-            "key": "cartId"
+            "key": "orderReference"
+          },
+          {
+            "id": "2000",
+            "key": "displayId",
+            "optional": true
           },
           {
             "key": "products",
