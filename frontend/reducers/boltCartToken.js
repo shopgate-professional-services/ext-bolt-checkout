@@ -1,4 +1,9 @@
-import { UPDATE_PRODUCTS_IN_CART } from '@shopgate/engage/cart';
+import {
+  UPDATE_PRODUCTS_IN_CART,
+  DELETE_PRODUCTS_FROM_CART,
+  ADD_COUPONS_TO_CART,
+  DELETE_COUPONS_FROM_CART,
+} from '@shopgate/engage/cart';
 import {
   RECEIVE_BOLT_CART_TOKEN,
   REQUEST_BOLT_CART_TOKEN,
@@ -20,12 +25,14 @@ const boltTokenReducer = (
   action
 ) => {
   switch (action.type) {
-    case UPDATE_PRODUCTS_IN_CART: {
+    case UPDATE_PRODUCTS_IN_CART:
+    case DELETE_PRODUCTS_FROM_CART:
+    case ADD_COUPONS_TO_CART:
+    case DELETE_COUPONS_FROM_CART:
       return {
         ...state,
         willUpdate: true,
       };
-    }
     case REQUEST_BOLT_CART_TOKEN:
       return {
         ...state,
