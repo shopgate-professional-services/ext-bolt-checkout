@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 import { getUserData } from '@shopgate/pwa-common/selectors/user';
-import { getIsFetching } from '@shopgate/engage/cart';
+import { getIsFetching, getOrderableStatus } from '@shopgate/engage/cart';
 import { REDUX_NAMESPACE_BOLT_CART_TOKEN } from '../constants';
 
 /**
@@ -73,8 +73,17 @@ const isTokenFetching = createSelector(
   tokenState => tokenState.isFetching
 );
 
+const willTokenUpdate = createSelector(
+  getBoltCartTokenState,
+  tokenState => tokenState.willUpdate
+);
+
 export const getIsCartBusy = createSelector(
   getIsFetching,
+  getOrderableStatus,
   isTokenFetching,
-  (cartFetching, tokenFetching) => cartFetching || tokenFetching
+  willTokenUpdate,
+  (cartFetching, cartOrderable, tokenFetching, tokenWillUpdate) => (
+    cartFetching || !cartOrderable || tokenFetching || tokenWillUpdate
+  )
 );
