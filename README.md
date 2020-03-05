@@ -4,6 +4,10 @@ Enables Bolt Checkout in Shopgate Engage e-commerce app
 ## Currently supported shopping carts
 - Magento2
 
+## Bolt Merchant Dashboard Configuration
+When in production `https://connect.shopgate.com` must be added to the list of domains the publishable key is configured ot be used on.
+That configuration can be found in the Bolt merchant dashboard -> Settings -> Keys and URLs.
+
 ## Installation
 In order to use this extension there are just few things than needs to be done.
 
