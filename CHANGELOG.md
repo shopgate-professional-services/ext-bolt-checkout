@@ -5,8 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [1.1.5] - 2020-03-13
 ### Added
 - Instructions about adding Shopgate domain to Bolt configuration for publishable keys
+### fixed
+- Discount application to bolt cart total
 
 ## [1.1.4] - 2020-02-12
 ### Fixed
@@ -34,7 +38,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Removed
 
 
-[Unreleased]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.4...HEAD
+[Unreleased]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.5...HEAD
+[1.1.5]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.4...v1.1.5
 [1.1.4]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.3...v1.1.4
 [1.1.3]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.2...v1.1.3
 [1.1.2]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.1...v1.1.2

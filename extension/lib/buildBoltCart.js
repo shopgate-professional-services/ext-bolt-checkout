@@ -43,10 +43,13 @@ module.exports = async function buildBoltCart (context, input) {
 
   const tax = getTotal('tax', input.totals)
   const discounts = input.totals.filter(({ type }) => type === 'discount')
+  const discountAmount = discounts.reduce((total, discount) => (
+    total + Math.abs(discount.amount * 100)
+  ), 0)
   const cart = {
     order_reference: input.orderReference,
     currency: input.currency,
-    total_amount: getTotal('subTotal', input.totals) + tax,
+    total_amount: getTotal('subTotal', input.totals) + tax - discountAmount,
     tax_amount: tax,
     items,
     discounts: discounts.map((d) => ({
