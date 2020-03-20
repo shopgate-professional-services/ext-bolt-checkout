@@ -2,6 +2,7 @@ import PipelineRequest from '@shopgate/pwa-core/classes/PipelineRequest';
 import { ERROR_HANDLE_SUPPRESS } from '@shopgate/pwa-core/constants/ErrorHandleTypes';
 import { logger } from '@shopgate/pwa-core/helpers';
 import event from '@shopgate/pwa-core/classes/Event';
+import { historyReplace } from '@shopgate/engage/core';
 import { getCartProducts, CART_PATH } from '@shopgate/engage/cart';
 import getCart from '@shopgate/pwa-tracking/selectors/cart';
 import { track } from '@shopgate/pwa-tracking/helpers';
@@ -13,6 +14,7 @@ import {
   requestBoltCartToken,
 } from '../action-creators';
 import { formatTransaction } from '../helpers/formatTransaction';
+import { ORDER_SUCCESS_PAGE } from '../constants';
 
 /**
  * @returns {Function}
@@ -54,12 +56,12 @@ export const processOrder = transaction => async (dispatch, getState) => {
   } catch (err) {
     logger.error(err);
   }
-
   const products = getCartProducts(getState());
+  console.log('processorder transaction', transaction);
   const order = formatTransaction(transaction, products);
-
+  dispatch(historyReplace({ pathname: ORDER_SUCCESS_PAGE, state: { order } }));
   // checkoutSuccess triggers resetHistory, fetchCart and tracking
-  event.trigger('checkoutSuccess', order);
+  //event.trigger('checkoutSuccess', order);
 };
 
 /**

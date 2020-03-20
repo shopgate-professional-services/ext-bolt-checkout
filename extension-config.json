@@ -23,6 +23,12 @@
       "id": "boltCartToken",
       "path": "frontend/reducers/boltCartToken.js",
       "type": "reducers"
+    },
+    {
+      "id": "OrderSuccessPage",
+      "type": "portals",
+      "path": "frontend/pages/OrderSuccess",
+      "target": "app.routes"
     }
   ],
   "configuration": {
