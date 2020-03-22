@@ -45,3 +45,11 @@ For @shopgate/magento-cart configuration please refer to [@shopgate/magento-cart
 - shopgateApiKey - (string) Merchant's Shopgate API key
 
 - shopgatePluginUrl - (string) Url to Shopgate plugin endpoint on the merchant's magento2 server
+
+- showLocalCheckoutSuccessPage - (boolean) True if a local checkout success page should be shown upon a successful checkout
+
+- localCheckoutSuccessPageTitle - (string) Title of optional local checkout success page
+
+- localCheckoutSuccessPageButtonText - (string) Text shown in button on optional checkout success page
+
+- localCheckoutSuccessPageButtonMessage - (string) Optional text shown under title on the optional checkout success page
