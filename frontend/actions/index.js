@@ -59,6 +59,7 @@ export const processOrder = transaction => async (dispatch, getState) => {
   } catch (err) {
     logger.error(err);
   }
+
   const products = getCartProducts(getState());
   const order = formatTransaction(transaction, products);
 
