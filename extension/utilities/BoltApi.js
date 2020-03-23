@@ -47,6 +47,23 @@ class BoltApi {
   }
 
   /**
+   * Safely stringify value
+   * @param {*} value Value to be stringified
+   * @return {string|null|*}
+   */
+  stringify (value) {
+    if (!value) {
+      return null;
+    }
+
+    try {
+      return JSON.stringify(value)
+    } catch (e) {
+      return value
+    }
+  }
+
+  /**
    * Evaluate response code for error
    * @param {number} code Response code
    * @return {boolean}
@@ -88,7 +105,8 @@ class BoltApi {
         if (err) {
           this.logger.error({
             body,
-            error: {...err}
+            error: {...err},
+            requestParams: this.stringify(params)
           }, 'BoltAPI request error')
           return reject(err)
         }
@@ -98,7 +116,8 @@ class BoltApi {
         if (this.isErroredCode(res.statusCode)) {
           this.logger.error({
             body,
-            httpCode: res.statusCode
+            httpCode: res.statusCode,
+            requestParams: this.stringify(params)
           }, 'Bolt request error')
           return reject(new Error(`Received error code from the API: ${res.statusCode}`))
         }
