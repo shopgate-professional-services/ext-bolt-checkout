@@ -1,6 +1,7 @@
 const PluginApi = require('../utilities/PluginApi')
 const createCheckCartItems = require('../helpers/createCheckCartItems')
 const createCheckCartCoupons = require('../helpers/createCheckCartCoupons')
+const ErrorMissingMagentoTwoInternalCartInfo = require('../errors/ErrorMissingMagentoTwoInternalCartInfo')
 
 module.exports = async (context, input) => {
   const { cartItems = [], fullProducts = [], currency, externalCustomerId } = input || {}
@@ -39,6 +40,17 @@ module.exports = async (context, input) => {
   const response = await api.checkCart(cart)
 
   const { internal_cart_info: internalCartInfo } = response || {}
+
+  if (!internalCartInfo) {
+    context.log.error(
+      {
+        cart: JSON.stringify(cart),
+        response: JSON.stringify(response)
+      },
+      'Magento Two plugin response missing internalCartInfo')
+    throw new ErrorMissingMagentoTwoInternalCartInfo()
+  }
+
   const { quote_id: quoteId, reserved_order_id: reservedOrderId } = JSON.parse(internalCartInfo) || {}
 
   return {
