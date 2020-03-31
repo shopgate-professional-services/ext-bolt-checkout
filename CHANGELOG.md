@@ -5,12 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
-### Added
-- improved error logging for calls to magento two plugin
 
 ## [1.2.2] - 2020-03-31
 ### Fixed
 - Round bolt totals and items amounts to whole cent
+### Added
+- improved error logging for calls to magento two plugin
 
 ## [1.2.1] - 2020-03-24
 ### Added
