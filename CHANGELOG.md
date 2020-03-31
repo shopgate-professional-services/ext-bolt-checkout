@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.2.2] - 2020-03-31
+### Fixed
+- Round bolt totals and items amounts to whole cent
+
 ## [1.2.1] - 2020-03-24
 ### Added
 - improvement to error logging
@@ -46,7 +50,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Removed
 
 
-[Unreleased]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.2.2...HEAD
+[1.2.2]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.5...v1.2.0
 [1.1.5]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.4...v1.1.5

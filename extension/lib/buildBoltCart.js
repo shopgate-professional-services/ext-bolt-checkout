@@ -6,8 +6,8 @@
  */
 const getTotal = (totalName, totals = []) => {
   const { amount = 0 } = totals.find(({ type }) => type === totalName) || {}
-  // return in cents
-  return amount * 100
+  // return in cents rounded to whole cent
+  return Math.round(amount * 100)
 }
 
 /**
@@ -31,8 +31,8 @@ module.exports = async function buildBoltCart (context, input) {
     return {
       name: product.name,
       reference: product.id,
-      total_amount: product.price.unit * cartItem.quantity * 100,
-      unit_price: product.price.unit * 100,
+      total_amount: Math.round(product.price.unit * cartItem.quantity * 100),
+      unit_price: Math.round(product.price.unit * 100),
       quantity: cartItem.quantity,
       sku: sku.trim(),
       image_url: product.featuredImageUrl ? product.featuredImageUrl : undefined,
@@ -44,7 +44,7 @@ module.exports = async function buildBoltCart (context, input) {
   const tax = getTotal('tax', input.totals)
   const discounts = input.totals.filter(({ type }) => type === 'discount')
   const discountAmount = discounts.reduce((total, discount) => (
-    total + Math.abs(discount.amount * 100)
+    total + Math.abs(Math.round(discount.amount * 100))
   ), 0)
   const cart = {
     order_reference: input.orderReference,
