@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+### [1.2.3]
+### Fixed
+- ensure discount amounts returned as integer
+
 ## [1.2.2] - 2020-03-31
 ### Fixed
 - Round bolt totals and items amounts to whole cent
