@@ -53,6 +53,16 @@ module.exports = async (context, input) => {
 
   const { quote_id: quoteId, reserved_order_id: reservedOrderId } = JSON.parse(internalCartInfo) || {}
 
+  if (!quoteId) {
+    context.log.error(
+      {
+        cart: JSON.stringify(cart),
+        response: JSON.stringify(response),
+        internalCartInfo
+      },
+      'Magento Two plugin response missing quoteId in internalCartInfo')
+  }
+
   return {
     orderReference: quoteId,
     displayId: `${reservedOrderId} / ${quoteId}`

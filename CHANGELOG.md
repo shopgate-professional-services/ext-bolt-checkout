@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+### [1.2.4]
+### Added
+- immutable_quote_id to metadata
+
 ### [1.2.3]
 ### Fixed
 - ensure discount amounts returned as integer
