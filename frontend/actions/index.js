@@ -5,7 +5,7 @@ import event from '@shopgate/pwa-core/classes/Event';
 import { historyReplace } from '@shopgate/engage/core';
 import { getCartProducts, CART_PATH, fetchCart } from '@shopgate/engage/cart';
 import getCart from '@shopgate/pwa-tracking/selectors/cart';
-import { track } from '@shopgate/pwa-tracking/helpers';
+import { track, formatPurchaseData } from '@shopgate/pwa-tracking/helpers';
 import { LoadingProvider } from '@shopgate/pwa-common/providers';
 import { getBoltCartTokenState } from '../selectors';
 import {
@@ -64,10 +64,12 @@ export const processOrder = transaction => async (dispatch, getState) => {
   const order = formatTransaction(transaction, products);
 
   if (showLocalCheckoutSuccessPage) {
+    const orderFormatted = formatPurchaseData(order.order);
+
     track(
       'purchase',
       {
-        ...order,
+        ...orderFormatted,
         meta: { source: 'app_PWA' },
       },
       getState()

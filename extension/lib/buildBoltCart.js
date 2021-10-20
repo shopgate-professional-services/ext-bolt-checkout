@@ -48,6 +48,9 @@ module.exports = async function buildBoltCart (context, input) {
   ), 0)
   const cart = {
     order_reference: input.orderReference,
+    metadata: {
+      immutable_quote_id: input.orderReference
+    },
     currency: input.currency,
     total_amount: getTotal('subTotal', input.totals) + tax - discountAmount,
     tax_amount: tax,
