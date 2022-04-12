@@ -54,6 +54,10 @@ export const fetchBoltCartToken = () => (dispatch, getState) => {
  * @return {Function}
  */
 export const processOrder = transaction => async (dispatch, getState) => {
+  if (showLocalCheckoutSuccessPage) {
+    dispatch(historyReplace({ pathname: CHECKOUT_SUCCESS_PAGE }));
+  }
+
   try {
     await new PipelineRequest('shopgate-project.bolt.clearCart').dispatch();
   } catch (err) {
@@ -75,7 +79,6 @@ export const processOrder = transaction => async (dispatch, getState) => {
       getState()
     );
     dispatch(fetchCart());
-    dispatch(historyReplace({ pathname: CHECKOUT_SUCCESS_PAGE }));
 
     return;
   }
