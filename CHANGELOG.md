@@ -6,9 +6,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
-### [1.2.4]
-### Added
-- immutable_quote_id to metadata
+## [1.2.5]
+### Fixed
+- excessive loading time after placing an order
+- assign revenue attribution to Shopgate app for orders placed in the app
+
+## [1.2.4]
+### Changed
+- updated internal cart object to match future versions of the Bolt API
 
 ### [1.2.3]
 ### Fixed
@@ -60,7 +65,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Removed
 
 
-[Unreleased]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.2.2...HEAD
+[Unreleased]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.2.5...HEAD
+[1.2.5]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.2.4...v1.2.5
+[1.2.4]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.2.3...v1.2.4
+[1.2.3]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.2.2...v1.2.3
 [1.2.2]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/shopgate-professional-services/ext-bolt-checkout/compare/v1.1.5...v1.2.0
