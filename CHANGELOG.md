@@ -15,7 +15,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Changed
 - updated internal cart object to match future versions of the Bolt API
 
-### [1.2.3]
+## [1.2.3]
 ### Fixed
 - ensure discount amounts returned as integer
 
